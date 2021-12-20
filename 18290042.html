@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <title>KEREM NALBANT - 18290042</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+uniform float theta;
+void main()
+{
+    float s = sin( theta );
+    float c = cos( theta );
+
+    gl_Position.x = -s * vPosition.y + c * vPosition.x;
+    gl_Position.y =  s * vPosition.x + c * vPosition.y;
+    gl_Position.z = 0.0;
+    gl_Position.w = 1.0;
+}</script>
+
+<script id="vertex-shader2" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+    uniform vec4 translation;
+    void main()
+    {
+        gl_Position.x = vPosition.x + translation.x;
+        gl_Position.y = vPosition.y + translation.y;
+        gl_Position.z = 0.0;
+        gl_Position.w = 1.0;
+    }
+</script>
+
+<script id="vertex-shader3" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+
+    void main()
+    {
+        gl_Position = (1.0 + vPosition)/111111.9;
+
+    }
+</script>
+
+
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+uniform float red;
+uniform float green;
+uniform float blue;
+
+void main()
+{
+    gl_FragColor = vec4(red, green, blue, 1.0 );
+}
+</script>
+
+<script src="MV.js"></script>
+
+<script src="initShaders.js"></script>
+
+<script src="18290042.js"></script>
+
+<script src="webgl-utils.js"></script>
+
+<body>
+    
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+</br>
+</br>
+    <span><b>Control Menu</b></span>
+    <select id="ShaderSwitch" size="3">
+        <option value="0">Rotate</option>
+        <option value="1">Translate</option>
+        <option value="2">Scale</option>
+    </select>
+</br>
+</br>
+
+    <h><b>Rotation Control Menu</b></h>
+    <select id="Controls" size="2">
+        <option value="0">1 - Rotate Clockwise</option>
+        <option value="1">2 - Rotate Counterclockwise</option>
+    </select>
+</br>
+</br>
+    <h><b>Color Menu</b></h>
+    <select id="Color" size="3">
+        <option value="0">Red</option>
+        <option value="1">Green</option>
+        <option value="2">Blue</option>
+    </select>
+</br>
+</br>
+    <h><b>Translate Menu</b></h>
+    <button id="Oteleme">→</button>
+    <button id="Oteleme2">↑</button>
+    <button id="Oteleme3">←</button>
+    <button id="Oteleme4">↓</button>
+</br>
+</br>
+    <h><b>Scale Menu</b></h>
+    <button id="Buyult">Enlarge</button>
+    <button id="Kucult">Shrink</button>
+    
+</body>
+
+</html>
